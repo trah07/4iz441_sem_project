@@ -1,4 +1,9 @@
-# This SPARQL query retrieves all movies and their directors, showcasing the relationship between `MediaContent` and `Person` entities.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX em: <http://example.org/media-entertainment-voc#>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+# Retrieve all movies and their directors
 SELECT ?movieName ?directorName
 WHERE {
     ?movie a em:MediaContent ;
@@ -6,128 +11,8 @@ WHERE {
            em:directedBy ?director .
     ?director schema:name ?directorName .
 }
-ORDER BY ?movieName
 
-# This query lists all streaming platforms hosting movies, demonstrating connections between `MediaContent` and `StreamingPlatform` entities.
-SELECT ?movieName ?platformName
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:name ?movieName ;
-           em:availableOn ?platform .
-    ?platform schema:name ?platformName .
-}
-GROUP BY ?platformName
-HAVING(COUNT(?movieName) > 1)
-
-# This query retrieves movies of a specific genre, for example, 'Science Fiction'.
-SELECT ?movieName
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:name ?movieName ;
-           schema:genre "Science Fiction" .
-}
-FILTER (?movieName != "Inception")
-ORDER BY ?movieName
-
-# This query lists all awards won by movies, showing the link between `Award` and `MediaContent` entities.
-SELECT ?movieName ?awardName
-WHERE {
-    ?award a em:Award ;
-           schema:name ?awardName ;
-           em:wonAward ?movie .
-    ?movie schema:name ?movieName .
-}
-ORDER BY DESC(?awardName)
-
-# This query retrieves all reviews for a specific movie (e.g., Avatar), showing the connection between `Review` and `MediaContent` entities.
-SELECT ?reviewName ?reviewBody
-WHERE {
-    ?review a em:Review ;
-           schema:name ?reviewName ;
-           schema:reviewBody ?reviewBody ;
-           em:reviewedBy em:Avatar .
-}
-LIMIT 3
-
-# This query lists all movies available on a specific streaming platform, e.g., Disney+.
-SELECT ?movieName
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:name ?movieName ;
-           em:availableOn em:DisneyPlus .
-}
-ORDER BY ?movieName
-
-# This query retrieves all persons who directed movies, showcasing relationships between `Person` and `MediaContent` entities.
-SELECT ?directorName
-WHERE {
-    ?movie a em:MediaContent ;
-           em:directedBy ?director .
-    ?director schema:name ?directorName .
-}
-GROUP BY ?directorName
-ORDER BY ?directorName
-
-# This query retrieves franchises and their included media content, emphasizing the hierarchical structure in `Franchise` entities.
-SELECT ?franchiseName ?contentName
-WHERE {
-    ?franchise a em:Franchise ;
-               schema:name ?franchiseName ;
-               em:includesContent ?content .
-    ?content schema:name ?contentName .
-}
-ORDER BY ?franchiseName
-
-# This query lists all awards associated with a specific person, such as Leonardo DiCaprio.
-SELECT ?awardName
-WHERE {
-    ?award a em:Award ;
-           schema:name ?awardName ;
-           em:wonAward ?person .
-    ?person schema:name "Leonardo DiCaprio" .
-}
-LIMIT 5
-
-# This query retrieves all movies released after a specific date, highlighting the temporal dimension of `MediaContent`.
-SELECT ?movieName ?releaseDate
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:name ?movieName ;
-           schema:datePublished ?releaseDate .
-    FILTER(?releaseDate > "2010-01-01"^^xsd:date)
-}
-ORDER BY ASC(?releaseDate)
-
-# This query retrieves the number of movies per genre, illustrating an aggregation of data within `MediaContent` entities.
-SELECT ?genre (COUNT(?movie) AS ?movieCount)
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:genre ?genre .
-}
-GROUP BY ?genre
-HAVING(COUNT(?movie) > 1)
-ORDER BY DESC(?movieCount)
-
-# This query retrieves all production companies and the movies they produced, showcasing the connection between `ProductionCompany` and `MediaContent` entities.
-SELECT ?companyName ?movieName
-WHERE {
-    ?company a em:ProductionCompany ;
-             schema:name ?companyName ;
-             em:producedBy ?movie .
-    ?movie schema:name ?movieName .
-}
-GROUP BY ?companyName ?movieName
-ORDER BY ?companyName
-
-#cSELECT ?movieName ?directorName
-WHERE {
-    ?movie a em:MediaContent ;
-           schema:name ?movieName ;
-           em:directedBy ?director .
-    ?director schema:name ?directorName .
-}
-
-# This query lists all streaming platforms hosting movies, demonstrating connections between `MediaContent` and `StreamingPlatform` entities.
+# Retrieve all streaming platforms hosting movies
 SELECT ?movieName ?platformName
 WHERE {
     ?movie a em:MediaContent ;
@@ -136,7 +21,7 @@ WHERE {
     ?platform schema:name ?platformName .
 }
 
-# This query retrieves movies of a specific genre, for example, 'Science Fiction'.
+# Retrieve movies of a specific genre
 SELECT ?movieName
 WHERE {
     ?movie a em:MediaContent ;
@@ -144,7 +29,7 @@ WHERE {
            schema:genre "Science Fiction" .
 }
 
-# This query lists all awards won by movies, showing the link between `Award` and `MediaContent` entities.
+# List all awards won by a movie
 SELECT ?movieName ?awardName
 WHERE {
     ?award a em:Award ;
@@ -153,7 +38,7 @@ WHERE {
     ?movie schema:name ?movieName .
 }
 
-# This query retrieves all reviews for a specific movie (e.g., Avatar), showing the connection between `Review` and `MediaContent` entities.
+# Retrieve all reviews for a specific movie
 SELECT ?reviewName ?reviewBody
 WHERE {
     ?review a em:Review ;
@@ -162,7 +47,7 @@ WHERE {
            em:reviewedBy em:Avatar .
 }
 
-# This query lists all movies available on a specific streaming platform, e.g., Disney+.
+# List all movies available on a specific streaming platform
 SELECT ?movieName
 WHERE {
     ?movie a em:MediaContent ;
@@ -170,7 +55,7 @@ WHERE {
            em:availableOn em:DisneyPlus .
 }
 
-# This query retrieves all persons who directed movies, showcasing relationships between `Person` and `MediaContent` entities.
+# Retrieve all persons who directed a movie
 SELECT ?directorName
 WHERE {
     ?movie a em:MediaContent ;
@@ -178,7 +63,7 @@ WHERE {
     ?director schema:name ?directorName .
 }
 
-# This query retrieves franchises and their included media content, emphasizing the hierarchical structure in `Franchise` entities.
+# Retrieve franchises and their included content
 SELECT ?franchiseName ?contentName
 WHERE {
     ?franchise a em:Franchise ;
@@ -187,7 +72,7 @@ WHERE {
     ?content schema:name ?contentName .
 }
 
-# This query lists all awards associated with a specific person, such as Leonardo DiCaprio.
+# List all awards associated with a specific person
 SELECT ?awardName
 WHERE {
     ?award a em:Award ;
@@ -196,7 +81,7 @@ WHERE {
     ?person schema:name "Leonardo DiCaprio" .
 }
 
-# This query retrieves all movies released after a specific date, highlighting the temporal dimension of `MediaContent`.
+# Retrieve all movies released after a specific date
 SELECT ?movieName ?releaseDate
 WHERE {
     ?movie a em:MediaContent ;
@@ -205,7 +90,7 @@ WHERE {
     FILTER(?releaseDate > "2010-01-01"^^xsd:date)
 }
 
-# This query retrieves the number of movies per genre, illustrating an aggregation of data within `MediaContent` entities.
+# Retrieve the number of movies per genre
 SELECT ?genre (COUNT(?movie) AS ?movieCount)
 WHERE {
     ?movie a em:MediaContent ;
@@ -213,7 +98,7 @@ WHERE {
 }
 GROUP BY ?genre
 
-# This query retrieves all production companies and the movies they produced, showcasing the connection between `ProductionCompany` and `MediaContent` entities.
+# Retrieve all production companies and the movies they produced
 SELECT ?companyName ?movieName
 WHERE {
     ?company a em:ProductionCompany ;
