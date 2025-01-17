@@ -101,28 +101,13 @@ em:Unkrich a em:Person ;
 
 ### Streaming Platforms
 em:Netflix a em:StreamingPlatform ;
-    schema:name "Netflix" ;
-    schema:launchDate "1997-08-29"^^xsd:date ;
-    em:subscriptionCost "15.49"^^xsd:decimal ;
-    em:contentType "Movies, TV Shows, and Original Content" .
-
-em:Hulu a em:StreamingPlatform ;
-    schema:name "Hulu" ;
-    schema:launchDate "2008-03-12"^^xsd:date ;
-    em:subscriptionCost "7.99"^^xsd:decimal ;
-    em:contentType "Movies and TV Shows" .
+    schema:name "Netflix" .
 
 em:DisneyPlus a em:StreamingPlatform ;
-    schema:name "Disney+" ;
-    schema:launchDate "2019-11-12"^^xsd:date ;
-    em:subscriptionCost "7.99"^^xsd:decimal ;
-    em:contentType "Movies, TV Shows, and Disney Originals" .
+    schema:name "Disney+" .
 
 em:PrimeVideo a em:StreamingPlatform ;
-    schema:name "Prime Video" ;
-    schema:launchDate "2006-09-07"^^xsd:date ;
-    em:subscriptionCost "8.99"^^xsd:decimal ;
-    em:contentType "Movies, TV Shows, and Amazon Originals" .
+    schema:name "Prime Video" .
 
 ### Awards
 em:Oscar2020 a em:Award ;
