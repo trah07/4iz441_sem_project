@@ -1,0 +1,108 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX em: <http://example.org/media-entertainment-voc#>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+# Retrieve all movies and their directors
+SELECT ?movieName ?directorName
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:name ?movieName ;
+           em:directedBy ?director .
+    ?director schema:name ?directorName .
+}
+
+# Retrieve all streaming platforms hosting movies
+SELECT ?movieName ?platformName
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:name ?movieName ;
+           em:availableOn ?platform .
+    ?platform schema:name ?platformName .
+}
+
+# Retrieve movies of a specific genre
+SELECT ?movieName
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:name ?movieName ;
+           schema:genre "Science Fiction" .
+}
+
+# List all awards won by a movie
+SELECT ?movieName ?awardName
+WHERE {
+    ?award a em:Award ;
+           schema:name ?awardName ;
+           em:wonAward ?movie .
+    ?movie schema:name ?movieName .
+}
+
+# Retrieve all reviews for a specific movie
+SELECT ?reviewName ?reviewBody
+WHERE {
+    ?review a em:Review ;
+           schema:name ?reviewName ;
+           schema:reviewBody ?reviewBody ;
+           em:reviewedBy em:Avatar .
+}
+
+# List all movies available on a specific streaming platform
+SELECT ?movieName
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:name ?movieName ;
+           em:availableOn em:DisneyPlus .
+}
+
+# Retrieve all persons who directed a movie
+SELECT ?directorName
+WHERE {
+    ?movie a em:MediaContent ;
+           em:directedBy ?director .
+    ?director schema:name ?directorName .
+}
+
+# Retrieve franchises and their included content
+SELECT ?franchiseName ?contentName
+WHERE {
+    ?franchise a em:Franchise ;
+               schema:name ?franchiseName ;
+               em:includesContent ?content .
+    ?content schema:name ?contentName .
+}
+
+# List all awards associated with a specific person
+SELECT ?awardName
+WHERE {
+    ?award a em:Award ;
+           schema:name ?awardName ;
+           em:wonAward ?person .
+    ?person schema:name "Leonardo DiCaprio" .
+}
+
+# Retrieve all movies released after a specific date
+SELECT ?movieName ?releaseDate
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:name ?movieName ;
+           schema:datePublished ?releaseDate .
+    FILTER(?releaseDate > "2010-01-01"^^xsd:date)
+}
+
+# Retrieve the number of movies per genre
+SELECT ?genre (COUNT(?movie) AS ?movieCount)
+WHERE {
+    ?movie a em:MediaContent ;
+           schema:genre ?genre .
+}
+GROUP BY ?genre
+
+# Retrieve all production companies and the movies they produced
+SELECT ?companyName ?movieName
+WHERE {
+    ?company a em:ProductionCompany ;
+             schema:name ?companyName ;
+             em:producedBy ?movie .
+    ?movie schema:name ?movieName .
+}

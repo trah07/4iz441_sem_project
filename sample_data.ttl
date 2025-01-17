@@ -1,0 +1,214 @@
+@prefix em: <http://example.org/media-entertainment-voc#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### Media Content
+em:Inception a em:MediaContent ;
+    schema:name "Inception" ;
+    schema:datePublished "2010-07-16"^^xsd:date ;
+    schema:genre "Science Fiction" ;
+    em:directedBy em:Nolan ;
+    em:availableOn em:Netflix .
+
+em:Avatar a em:MediaContent ;
+    schema:name "Avatar" ;
+    schema:datePublished "2009-12-18"^^xsd:date ;
+    schema:genre "Adventure" ;
+    em:directedBy em:Cameron ;
+    em:availableOn em:DisneyPlus .
+
+em:Frozen a em:MediaContent ;
+    schema:name "Frozen" ;
+    schema:datePublished "2013-11-27"^^xsd:date ;
+    schema:genre "Animation" ;
+    em:directedBy em:Buck ;
+    em:availableOn em:DisneyPlus .
+
+em:JurassicPark a em:MediaContent ;
+    schema:name "Jurassic Park" ;
+    schema:datePublished "1993-06-11"^^xsd:date ;
+    schema:genre "Adventure" ;
+    em:directedBy em:Spielberg ;
+    em:availableOn em:PrimeVideo .
+
+em:BlackPanther a em:MediaContent ;
+    schema:name "Black Panther" ;
+    schema:datePublished "2018-02-16"^^xsd:date ;
+    schema:genre "Action" ;
+    em:directedBy em:Coogler ;
+    em:availableOn em:DisneyPlus .
+
+em:Moana a em:MediaContent ;
+    schema:name "Moana" ;
+    schema:datePublished "2016-11-23"^^xsd:date ;
+    schema:genre "Animation" ;
+    em:directedBy em:Clements ;
+    em:availableOn em:DisneyPlus .
+
+em:StarWars a em:MediaContent ;
+    schema:name "Star Wars: A New Hope" ;
+    schema:datePublished "1977-05-25"^^xsd:date ;
+    schema:genre "Science Fiction" ;
+    em:directedBy em:Lucas ;
+    em:availableOn em:DisneyPlus .
+
+em:Coco a em:MediaContent ;
+    schema:name "Coco" ;
+    schema:datePublished "2017-11-22"^^xsd:date ;
+    schema:genre "Animation" ;
+    em:directedBy em:Unkrich ;
+    em:availableOn em:DisneyPlus .
+
+### Persons
+em:Nolan a em:Person ;
+    schema:name "Christopher Nolan" ;
+    em:starredIn em:Inception, em:Interstellar, em:Tenet .
+
+em:DiCaprio a em:Person ;
+    schema:name "Leonardo DiCaprio" ;
+    em:starredIn em:Inception .
+
+em:Cameron a em:Person ;
+    schema:name "James Cameron" ;
+    em:directedBy em:Avatar .
+
+em:Buck a em:Person ;
+    schema:name "Chris Buck" ;
+    em:directedBy em:Frozen .
+
+em:Spielberg a em:Person ;
+    schema:name "Steven Spielberg" ;
+    em:directedBy em:JurassicPark .
+
+em:Coogler a em:Person ;
+    schema:name "Ryan Coogler" ;
+    em:directedBy em:BlackPanther .
+
+em:Lucas a em:Person ;
+    schema:name "George Lucas" ;
+    em:directedBy em:StarWars .
+
+em:Clements a em:Person ;
+    schema:name "Ron Clements" ;
+    em:directedBy em:Moana .
+
+em:Unkrich a em:Person ;
+    schema:name "Lee Unkrich" ;
+    em:directedBy em:Coco .
+
+### Streaming Platforms
+em:Netflix a em:StreamingPlatform ;
+    schema:name "Netflix" ;
+    schema:launchDate "1997-08-29"^^xsd:date ;
+    em:subscriptionCost "15.49"^^xsd:decimal ;
+    em:contentType "Movies, TV Shows, and Original Content" .
+
+em:Hulu a em:StreamingPlatform ;
+    schema:name "Hulu" ;
+    schema:launchDate "2008-03-12"^^xsd:date ;
+    em:subscriptionCost "7.99"^^xsd:decimal ;
+    em:contentType "Movies and TV Shows" .
+
+em:DisneyPlus a em:StreamingPlatform ;
+    schema:name "Disney+" ;
+    schema:launchDate "2019-11-12"^^xsd:date ;
+    em:subscriptionCost "7.99"^^xsd:decimal ;
+    em:contentType "Movies, TV Shows, and Disney Originals" .
+
+em:PrimeVideo a em:StreamingPlatform ;
+    schema:name "Prime Video" ;
+    schema:launchDate "2006-09-07"^^xsd:date ;
+    em:subscriptionCost "8.99"^^xsd:decimal ;
+    em:contentType "Movies, TV Shows, and Amazon Originals" .
+
+### Awards
+em:Oscar2020 a em:Award ;
+    schema:name "Oscar 2020" ;
+    em:wonAward em:Inception .
+
+em:GoldenGlobe2021 a em:Award ;
+    schema:name "Golden Globe 2021" ;
+    em:wonAward em:Avatar .
+
+em:BAFTA2022 a em:Award ;
+    schema:name "BAFTA 2022" ;
+    em:wonAward em:BlackPanther .
+
+em:AcademyAward1994 a em:Award ;
+    schema:name "Academy Award 1994" ;
+    em:wonAward em:JurassicPark .
+
+em:GoldenGlobe2017 a em:Award ;
+    schema:name "Golden Globe 2017" ;
+    em:wonAward em:Moana .
+
+em:Oscar2010 a em:Award ;
+    schema:name "Oscar 2010" ;
+    em:wonAward em:DiCaprio .
+
+### Franchises
+em:AvatarFranchise a em:Franchise ;
+    schema:name "Avatar Franchise" ;
+    em:includesContent em:Avatar, em:Avatar2 .
+
+em:JurassicFranchise a em:Franchise ;
+    schema:name "Jurassic Franchise" ;
+    em:includesContent em:JurassicPark, em:JurassicWorld .
+
+em:StarWarsFranchise a em:Franchise ;
+    schema:name "Star Wars Franchise" ;
+    em:includesContent em:StarWars .
+
+em:FrozenFranchise a em:Franchise ;
+    schema:name "Frozen Franchise" ;
+    em:includesContent em:Frozen .
+
+### Production Companies
+em:Lightstorm a em:ProductionCompany ;
+    schema:name "Lightstorm Entertainment" ;
+    em:producedBy em:Avatar, em:Avatar2 .
+
+em:Amblin a em:ProductionCompany ;
+    schema:name "Amblin Entertainment" ;
+    em:producedBy em:JurassicPark .
+
+em:MarvelStudios a em:ProductionCompany ;
+    schema:name "Marvel Studios" ;
+    em:producedBy em:BlackPanther .
+
+em:Pixar a em:ProductionCompany ;
+    schema:name "Pixar Animation Studios" ;
+    em:producedBy em:Coco .
+
+em:Lucasfilm a em:ProductionCompany ;
+    schema:name "Lucasfilm Ltd." ;
+    em:producedBy em:StarWars .
+
+### Reviews
+em:Review1 a em:Review ;
+    schema:name "Top Critic Review" ;
+    em:reviewedBy em:Avatar ;
+    schema:reviewBody "An amazing visual experience!" .
+
+em:Review2 a em:Review ;
+    schema:name "User Review" ;
+    em:reviewedBy em:Inception ;
+    schema:reviewBody "A mind-bending masterpiece." .
+
+em:Review3 a em:Review ;
+    schema:name "Critic Review" ;
+    em:reviewedBy em:JurassicPark ;
+    schema:reviewBody "A thrilling adventure with groundbreaking effects." .
+
+em:Review4 a em:Review ;
+    schema:name "Audience Review" ;
+    em:reviewedBy em:Moana ;
+    schema:reviewBody "Heartwarming and beautifully animated." .
+
+em:Review5 a em:Review ;
+    schema:name "Expert Review" ;
+    em:reviewedBy em:Coco ;
+    schema:reviewBody "An emotional journey with stunning visuals." .
