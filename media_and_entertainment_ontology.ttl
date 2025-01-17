@@ -1,0 +1,119 @@
+@prefix em: <http://example.org/media-entertainment-voc#> .
+
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### Classes
+
+# MediaContent Class
+em:MediaContent a owl:Class ;
+    rdfs:label "Media Content" ;
+    rdfs:comment "Represents movies or TV shows." ;
+    rdfs:subClassOf schema:CreativeWork .
+
+# Person Class
+em:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:comment "Represents an actor, director, or producer." ;
+    rdfs:subClassOf schema:Person .
+
+# StreamingPlatform Class
+em:StreamingPlatform a owl:Class ;
+    rdfs:label "Streaming Platform" ;
+    rdfs:comment "Represents platforms hosting media content." ;
+    rdfs:subClassOf schema:Organization .
+
+# Award Class
+em:Award a owl:Class ;
+    rdfs:label "Award" ;
+    rdfs:comment "Represents awards given to persons or media content." .
+
+# Franchise Class
+em:Franchise a owl:Class ;
+    rdfs:label "Franchise" ;
+    rdfs:comment "Represents a collection of related media content." ;
+    rdfs:subClassOf schema:CreativeWork .
+
+# Review Class
+em:Review a owl:Class ;
+    rdfs:label "Review" ;
+    rdfs:comment "Represents feedback or critiques associated with media content." ;
+    rdfs:subClassOf schema:Review .
+
+# ProductionCompany Class
+em:ProductionCompany a owl:Class ;
+    rdfs:label "Production Company" ;
+    rdfs:comment "Represents a company involved in producing media content." ;
+    rdfs:subClassOf schema:Organization .
+
+### Properties
+
+# Person Class Properties and links to MediaContent
+em:starredIn a owl:ObjectProperty ;
+    rdfs:label "Starred In" ;
+    rdfs:domain em:Person ;
+    rdfs:range em:MediaContent .
+
+# Person Class and MediaContent Class Properties and links to Award
+em:wonAward a owl:ObjectProperty ;
+    rdfs:label "Won Award" ;
+    rdfs:domain [ a owl:Class ; owl:unionOf (em:Person em:MediaContent) ] ;
+    rdfs:range em:Award .
+
+# MediaContent Class Properties and links to Person
+em:directedBy a owl:ObjectProperty ;
+    rdfs:label "Directed By" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range em:Person ;
+    owl:inverseOf em:hasDirector .
+
+# MediaContent Class Properties and links to Person as an inverse of directedBy
+em:hasDirector a owl:ObjectProperty ;
+    rdfs:label "Has Director" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range em:Person .
+
+# MediaContent Class Properties and links to ProductionCompany
+em:producedBy a owl:ObjectProperty ;
+    rdfs:label "Produced By" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range em:ProductionCompany .
+
+# MediaContent Class Properties and links to StreamingPlatform
+em:availableOn a owl:ObjectProperty ;
+    rdfs:label "Available On" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range em:StreamingPlatform .
+
+# MediaContent Class Properties and specifies the release date
+em:releaseDate a owl:DatatypeProperty ;
+    rdfs:label "Release Date" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range schema:Date .
+
+# MediaContent Class Properties and specifies the genre
+em:genre a owl:DatatypeProperty ;
+    rdfs:label "Genre" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range schema:Text .
+
+# MediaContent Class Properties and specifies the duration in minutes
+em:duration a owl:DatatypeProperty ;
+    rdfs:label "Duration" ;
+    rdfs:domain em:MediaContent ;
+    rdfs:range xsd:integer .
+
+# Franchise Class Properties and links to MediaContent
+em:includesContent a owl:ObjectProperty ;
+    rdfs:label "Includes Content" ;
+    rdfs:domain em:Franchise ;
+    rdfs:range em:MediaContent .
+
+# Review Class Properties and links to MediaContent
+em:reviewedBy a owl:ObjectProperty ;
+    rdfs:label "Reviewed By" ;
+    rdfs:domain em:Review ;
+    rdfs:range em:MediaContent .
