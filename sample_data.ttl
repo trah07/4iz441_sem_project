@@ -11,56 +11,64 @@ em:Inception a em:MediaContent ;
     schema:datePublished "2010-07-16"^^xsd:date ;
     schema:genre "Science Fiction" ;
     em:directedBy em:Nolan ;
-    em:availableOn em:Netflix .
+    em:availableOn em:Netflix ;
+    em:producedBy em:WarnerBros .
 
 em:Avatar a em:MediaContent ;
     schema:name "Avatar" ;
     schema:datePublished "2009-12-18"^^xsd:date ;
     schema:genre "Adventure" ;
     em:directedBy em:Cameron ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:Lightstorm .
 
 em:Frozen a em:MediaContent ;
     schema:name "Frozen" ;
     schema:datePublished "2013-11-27"^^xsd:date ;
     schema:genre "Animation" ;
     em:directedBy em:Buck ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:DisneyAnimationStudios .
 
 em:JurassicPark a em:MediaContent ;
     schema:name "Jurassic Park" ;
     schema:datePublished "1993-06-11"^^xsd:date ;
     schema:genre "Adventure" ;
     em:directedBy em:Spielberg ;
-    em:availableOn em:PrimeVideo .
+    em:availableOn em:PrimeVideo ;
+    em:producedBy em:Amblin .
 
 em:BlackPanther a em:MediaContent ;
     schema:name "Black Panther" ;
     schema:datePublished "2018-02-16"^^xsd:date ;
     schema:genre "Action" ;
     em:directedBy em:Coogler ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:MarvelStudios .
 
 em:Moana a em:MediaContent ;
     schema:name "Moana" ;
     schema:datePublished "2016-11-23"^^xsd:date ;
     schema:genre "Animation" ;
     em:directedBy em:Clements ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:DisneyAnimationStudios .
 
 em:StarWars a em:MediaContent ;
     schema:name "Star Wars: A New Hope" ;
     schema:datePublished "1977-05-25"^^xsd:date ;
     schema:genre "Science Fiction" ;
     em:directedBy em:Lucas ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:Lucasfilm .
 
 em:Coco a em:MediaContent ;
     schema:name "Coco" ;
     schema:datePublished "2017-11-22"^^xsd:date ;
     schema:genre "Animation" ;
     em:directedBy em:Unkrich ;
-    em:availableOn em:DisneyPlus .
+    em:availableOn em:DisneyPlus ;
+    em:producedBy em:Pixar .
 
 ### Persons
 em:Nolan a em:Person ;
@@ -69,35 +77,36 @@ em:Nolan a em:Person ;
 
 em:DiCaprio a em:Person ;
     schema:name "Leonardo DiCaprio" ;
-    em:starredIn em:Inception .
+    em:starredIn em:Inception ;
+    em:wonAward em:Oscar2010 .
 
 em:Cameron a em:Person ;
     schema:name "James Cameron" ;
-    em:directedBy em:Avatar .
+    em:hasDirected em:Avatar .
 
 em:Buck a em:Person ;
     schema:name "Chris Buck" ;
-    em:directedBy em:Frozen .
+    em:hasDirected em:Frozen .
 
 em:Spielberg a em:Person ;
     schema:name "Steven Spielberg" ;
-    em:directedBy em:JurassicPark .
+    em:hasDirected em:JurassicPark .
 
 em:Coogler a em:Person ;
     schema:name "Ryan Coogler" ;
-    em:directedBy em:BlackPanther .
+    em:hasDirected em:BlackPanther .
 
 em:Lucas a em:Person ;
     schema:name "George Lucas" ;
-    em:directedBy em:StarWars .
+    em:hasDirected em:StarWars .
 
 em:Clements a em:Person ;
     schema:name "Ron Clements" ;
-    em:directedBy em:Moana .
+    em:hasDirected em:Moana .
 
 em:Unkrich a em:Person ;
     schema:name "Lee Unkrich" ;
-    em:directedBy em:Coco .
+    em:hasDirected em:Coco .
 
 ### Streaming Platforms
 em:Netflix a em:StreamingPlatform ;
@@ -154,23 +163,31 @@ em:FrozenFranchise a em:Franchise ;
 ### Production Companies
 em:Lightstorm a em:ProductionCompany ;
     schema:name "Lightstorm Entertainment" ;
-    em:producedBy em:Avatar, em:Avatar2 .
+    em:hasProduced em:Avatar .
 
 em:Amblin a em:ProductionCompany ;
     schema:name "Amblin Entertainment" ;
-    em:producedBy em:JurassicPark .
+    em:hasProduced em:JurassicPark .
 
 em:MarvelStudios a em:ProductionCompany ;
     schema:name "Marvel Studios" ;
-    em:producedBy em:BlackPanther .
+    em:hasProduced em:BlackPanther .
 
 em:Pixar a em:ProductionCompany ;
     schema:name "Pixar Animation Studios" ;
-    em:producedBy em:Coco .
+    em:hasProduced em:Coco .
 
 em:Lucasfilm a em:ProductionCompany ;
     schema:name "Lucasfilm Ltd." ;
-    em:producedBy em:StarWars .
+    em:hasProduced em:StarWars .
+
+em:DisneyAnimationStudios a em:ProductionCompany ;
+    schema:name "Walt Disney Animation Studios" ;
+    em:hasProduced em:Frozen, em:Moana .
+
+em:WarnerBros a em:ProductionCompany ;
+    schema:name "Warner Bros. Pictures" ;
+    em:hasProduced em:Inception .
 
 ### Reviews
 em:Review1 a em:Review ;

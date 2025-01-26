@@ -98,6 +98,6 @@ SELECT ?companyName ?movieName
 WHERE {
     ?company a em:ProductionCompany ;
              schema:name ?companyName ;
-             em:producedBy ?movie .
+             em:hasProduced ?movie .
     ?movie schema:name ?movieName .
 }

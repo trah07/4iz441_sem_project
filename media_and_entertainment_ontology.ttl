@@ -57,6 +57,13 @@ em:starredIn a owl:ObjectProperty ;
     rdfs:domain em:Person ;
     rdfs:range em:MediaContent .
 
+# Person Class Properties and links to MediaContent
+em:hasDirected a owl:ObjectProperty ;
+    rdfs:label "Has Directed" ;
+    rdfs:domain em:Person ;
+    rdfs:range em:MediaContent ;
+    owl:inverseOf em:directedBy .
+
 # Person Class and MediaContent Class Properties and links to Award
 em:wonAward a owl:ObjectProperty ;
     rdfs:label "Won Award" ;
@@ -68,19 +75,14 @@ em:directedBy a owl:ObjectProperty ;
     rdfs:label "Directed By" ;
     rdfs:domain em:MediaContent ;
     rdfs:range em:Person ;
-    owl:inverseOf em:hasDirector .
-
-# MediaContent Class Properties and links to Person as an inverse of directedBy
-em:hasDirector a owl:ObjectProperty ;
-    rdfs:label "Has Director" ;
-    rdfs:domain em:MediaContent ;
-    rdfs:range em:Person .
+    owl:inverseOf em:hasDirected .
 
 # MediaContent Class Properties and links to ProductionCompany
 em:producedBy a owl:ObjectProperty ;
     rdfs:label "Produced By" ;
     rdfs:domain em:MediaContent ;
-    rdfs:range em:ProductionCompany .
+    rdfs:range em:ProductionCompany ;
+    owl:inverseOf em:hasProduced .
 
 # MediaContent Class Properties and links to StreamingPlatform
 em:availableOn a owl:ObjectProperty ;
@@ -100,12 +102,6 @@ em:genre a owl:DatatypeProperty ;
     rdfs:domain em:MediaContent ;
     rdfs:range schema:Text .
 
-# MediaContent Class Properties and specifies the duration in minutes
-em:duration a owl:DatatypeProperty ;
-    rdfs:label "Duration" ;
-    rdfs:domain em:MediaContent ;
-    rdfs:range xsd:integer .
-
 # Franchise Class Properties and links to MediaContent
 em:includesContent a owl:ObjectProperty ;
     rdfs:label "Includes Content" ;
@@ -117,3 +113,10 @@ em:reviewedBy a owl:ObjectProperty ;
     rdfs:label "Reviewed By" ;
     rdfs:domain em:Review ;
     rdfs:range em:MediaContent .
+
+# ProductionCompany Properties and links to MediaContent
+em:hasProduced a owl:ObjectProperty ;
+    rdfs:label "Has Produced" ;
+    rdfs:domain em:ProductionCompany ;
+    rdfs:range em:MediaContent ;
+    owl:inverseOf em:producedBy .
